@@ -12,7 +12,7 @@ MU_SUFFIX = 'microsoft.com'
 MU_REGEX = '%5m%id.%suffix'
 
 SERVER_PUB_ADDR = '127.0.0.1'  # mujson_mgr need this to generate ssr link
-API_INTERFACE = 'modwebapi'  # glzjinmod, modwebapi
+API_INTERFACE = 'glzjinmod'  # glzjinmod, modwebapi
 
 WEBAPI_URL = 'https://zhaoj.in'
 WEBAPI_TOKEN = 'NimaQu'
@@ -23,7 +23,7 @@ MUDB_FILE = 'mudb.json'
 # Mysql
 MYSQL_HOST = '127.0.0.1'
 MYSQL_PORT = 3306
-MYSQL_USER = 'ss'
+MYSQL_USER = 'root'
 MYSQL_PASS = 'ss'
 MYSQL_DB = 'sspanel'
 
