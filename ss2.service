@@ -1,0 +1,14 @@
+[Unit]
+Description=ss2 deamon
+After=rc-local.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/bin/nohup /usr/bin/python /soft/ss/server.py m>> /soft/ss/ss2.log 2>&1 &
+ExecStop=/usr/bin/bash /soft/ss/stop.sh
+Restart=always
+LimitNOFILE=512000
+[Install]
+WantedBy=multi-user.target
