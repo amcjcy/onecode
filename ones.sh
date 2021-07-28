@@ -66,8 +66,8 @@ echo "检查更新及安装 Ones 后端..."
 
 	apt-get update -y
 	apt-get install build-essential wget -y
-              apt-get install vim -y
-              apt-get install lsof -y
+	apt-get install vim -y
+	apt-get install lsof -y
 	mkdir /soft
 	cd /tmp && git clone -b master https://github.com/amcjcy/onecode.git
 	mv -f onecode /soft
