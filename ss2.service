@@ -6,8 +6,8 @@ After=rc-local.service
 Type=simple
 User=root
 Group=root
-ExecStart=/usr/bin/nohup /usr/bin/python /soft/ss/server.py m>> /soft/ss/ss2.log 2>&1 &
-ExecStop=/usr/bin/bash /soft/ss/stop.sh
+ExecStart=/usr/bin/nohup /usr/bin/python /soft1/shadowsocks/server.py m>> /soft1/shadowsocks/ss2.log 2>&1 &
+ExecStop=/usr/bin/bash /soft1/shadowsocks/stop.sh
 Restart=always
 LimitNOFILE=512000
 [Install]
