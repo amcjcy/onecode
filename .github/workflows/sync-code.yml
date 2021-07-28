@@ -1,26 +1,33 @@
-# File: .github/workflows/repo-sync.yml
 name: sync-code
+
 on:
-#  schedule:
-#  - cron:  "*/15 * * * *"
   workflow_dispatch:
-  watch:
-    types: started
-  push:
-    branches: [main]
+#  schedule:
+#    - cron: '*/30 0-16,22-23 * * *'
 
 jobs:
-  repo-sync:
-    runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
+  build:
+    runs-on: Ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    
+    - name: Init Build Dependencies
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        git config --global user.name 'GitHub Actions' 
+        git config --global user.email 'noreply@github.com'
+    - name: Prepare
+      run: |
+        mkdir -p ~/.ssh
+        echo -e "${{ secrets.SSH_JD }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan gitee.com > ~/.ssh/known_hosts
+    - name: Clone Master
+      run: |
+        git clone -b manyuser https://github.com/wadoro/shadowsocks.git master
+    - name: Push Dust
+      uses: ad-m/github-push-action@master
       with:
-        persist-credentials: false
-    - name: repo-sync
-      uses: repo-sync/github-sync@v2
-      with:
-        source_repo: "https://github.com/wadoro/shadowsocks.git"
-        source_branch: "main"
-        destination_branch: "master"
+        directory: master
         github_token: ${{ secrets.PAT }}
+        branch: master
