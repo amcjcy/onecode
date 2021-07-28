@@ -65,8 +65,8 @@ fi
 echo "检查更新及安装后端..."
 	apt-get update -y
 	apt-get install build-essential wget -y
-              apt-get install vim -y
-              apt-get install lsof -y
+	apt-get install vim -y
+	apt-get install lsof -y
 	wget https://raw.githubusercontent.com/amcjcy/onecode/main/libsodium-1.0.18.tar.gz
 	tar xf libsodium-1.0.18.tar.gz && cd libsodium-1.0.18
 	./configure && make -j2 && make install
