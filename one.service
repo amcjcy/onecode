@@ -6,8 +6,8 @@ After=rc-local.service
 Type=simple
 User=root
 Group=root
-ExecStart=/usr/bin/nohup /usr/bin/python /root/shadowsocks/server.py m>> /root/shadowsocks/one.log 2>&1 &
-ExecStop=/usr/bin/bash /root/shadowsocks/stop.sh
+ExecStart=/usr/bin/nohup /usr/bin/python /root/onecode/server.py m>> /root/onecode/one.log 2>&1 &
+ExecStop=/usr/bin/bash /root/onecode/stop.sh
 Restart=always
 LimitNOFILE=512000
 [Install]
