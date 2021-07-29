@@ -15,7 +15,7 @@ while :; do
   case "$1" in
 	--is_auto)
       is_auto=y; shift 1
-      [ -d "/root/shadowsocks" ] && { echo "One 后端 已经存在"; exit 1; }
+      [ -d "/root/onecode" ] && { echo "One 后端 已经存在"; exit 1; }
       ;;
     --is_mu)
       is_mu=y; shift 1
@@ -47,14 +47,14 @@ if [[ ${is_auto} != "y" ]]; then
 fi
 echo "检查是否已安装 One 后端..."
 
-if [ -d "/root/shadowsocks" ]; then
+if [ -d "/root/onecode" ]; then
 	while :; do echo
 		echo -n "服务器已安装 One 后端！继续安装，之前的所有配置都将丢失！?(Y/N)"
 		read is_clean_old
 		if [[ ${is_clean_old} != "y" && ${is_clean_old} != "Y" && ${is_clean_old} != "N" && ${is_clean_old} != "n" ]]; then
 			echo -n "Bad answer! Please only input number Y or N"
 		elif [[ ${is_clean_old} == "y" || ${is_clean_old} == "Y" ]]; then
-			rm -rf /root/shadowsocks
+			rm -rf /root/onecode
 			rm -rf /etc/systemd/system/one.service
 			break
 		else
@@ -68,7 +68,7 @@ echo "检查更新及安装后端..."
 	apt-get install vim -y
 	apt-get install lsof -y
 	timedatectl set-timezone Asia/Shanghai
-	wget https://github.com/jedisct1/libsodium/releases/download/1.0.18-RELEASE/libsodium-1.0.18.tar.gz
+	wget https://raw.githubusercontent.com/amcjcy/onecode/main/libsodium-1.0.18.tar.gz
 	tar xf libsodium-1.0.18.tar.gz && cd libsodium-1.0.18
 	./configure && make -j2 && make install
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
@@ -77,8 +77,8 @@ echo "检查更新及安装后端..."
 	pip install cymysql
 	cd ../ && rm -rf libsodium*
 	cd /root
-	git clone -b manyuser https://github.com/wadoro/shadowsocks.git
-	cd /root/shadowsocks
+	git clone -b master https://github.com/amcjcy/onecode.git
+	cd /root/onecode
 	pip install -r requirements.txt
 	chmod +x *.sh
 	cp apiconfig.py userapiconfig.py
@@ -88,7 +88,7 @@ echo "检查更新及安装后端..."
 	echo "* hard nofile 512000" >> /etc/security/limits.conf
 	echo "ulimit -n 51200">>/etc/profile
 	rm -rf /etc/sysctl.conf
-	cp -r /root/shadowsocks/sysctl.conf /etc/
+	cp -r /root/onecode/sysctl.conf /etc/
 
 do_modwebapi(){
 		echo -n "请输入 WebAPI url:"
@@ -109,7 +109,7 @@ do_modwebapi(){
 do_modwebapi
 do_service(){
 	echo "等待系统配置..."
-	cp -r /root/shadowsocks/one.service /etc/systemd/system/
+	cp -r /root/onecode/one.service /etc/systemd/system/
 	echo "正在启动 One 后端..."
 	systemctl daemon-reload && systemctl enable one && systemctl start one
 }
