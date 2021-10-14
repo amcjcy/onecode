@@ -20,7 +20,7 @@ jobs:
     - name: repo-sync
       uses: repo-sync/github-sync@v2
       with:
-        source_repo: "https://github.com/amcjcy/python2.git"
+        source_repo: "https://github.com/amcjcy/python3.git"
         source_branch: "master"
-        destination_branch: "py2"
+        destination_branch: "py3"
         github_token: ${{ secrets.PAT }}
