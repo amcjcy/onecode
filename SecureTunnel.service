@@ -1,0 +1,13 @@
+[Unit]
+Description=SecureTunnel
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+
+[Service]
+Type=simple
+User=root
+DynamicUser=true
+ExecStart=/opt/SecureTunnel/SecureTunnel -config=/opt/SecureTunnel/config.json
+
+[Install]
+WantedBy=multi-user.target
