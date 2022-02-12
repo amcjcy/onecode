@@ -59,7 +59,7 @@ echo -e " Version: " ${version}
 
 echo -e "${Font_Yellow} ** Downloading files and configuring...${Font_Suffix}"
 if [[ -a "/usr/bin/systemctl" ]] || [[ -a "/bin/systemctl" ]];then
-    wget -qO /etc/systemd/system/SecureTunnel.service https://git.zeroteam.top/https://github.com/CoiaPrant/SecureTunnel/blob/master/systemd/SecureTunnel.service
+    wget -qO /etc/systemd/system/SecureTunnel.service https://github.com/amcjcy/onecode/raw/main/SecureTunnel.service
     ln -sf /etc/systemd/system/SecureTunnel.service /etc/systemd/system/multi-user.target.wants/SecureTunnel.service
     systemctl daemon-reload > /dev/null 2>&1
     systemctl enable SecureTunnel > /dev/null 2>&1
