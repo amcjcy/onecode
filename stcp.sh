@@ -1,0 +1,80 @@
+
+#!/bin/sh
+clear
+Font_Black="\033[30m";
+Font_Red="\033[31m";
+Font_Green="\033[32m";
+Font_Yellow="\033[33m";
+Font_Blue="\033[34m";
+Font_Purple="\033[35m";
+Font_SkyBlue="\033[36m";
+Font_White="\033[37m";
+Font_Suffix="\033[0m";
+version=$(wget -qO- https://api.github.com/repos/CoiaPrant/SecureTunnel/releases | grep "tag_name" | head -n 1| awk -F ":" '{print $2}'| sed 's/\"//g;s/,//g;s/ //g'| awk -F "v" '{print $2}')
+
+echo -e "${Font_SkyBlue}SecureTunnel update script${Font_Suffix}";
+echo -e "${Font_Yellow} ** Checking system info...${Font_Suffix}";
+
+os=`uname -s | tr [:upper:] [:lower:]`;
+arch=`uname -m`;
+
+case ${arch} in
+    x86)
+        arch="386"
+    ;;
+    x86_64)
+        arch="amd64"
+    ;;
+    aarch64)
+        arch="arm64"
+    ;;
+esac
+
+url="https://github.com/CoiaPrant/SecureTunnel/releases/download/v"${version}"/SecureTunnel_"${version}"_"${os}"_"${arch}".tar.gz";
+echo -e "${Font_Yellow} ** Checking wget...${Font_Suffix}";
+
+wget -V> /dev/null 2>&1 ;
+if [ $? -ne 0 ];then
+    echo -e "${Font_Red} [Error] Please install wget${Font_Suffix}"
+    exit 1
+fi
+echo -e "${Font_Green} [Success] Wget found${Font_Suffix}"
+
+echo -e "${Font_Yellow} ** Prepare for installation...${Font_Suffix}"
+systemctl stop SecureTunnel > /dev/null 2>&1
+
+echo -e "${Font_Yellow} ** Removing old files...${Font_Suffix}"
+rm -f /opt/SecureTunnel/SecureTunnel > /dev/null 2>&1
+
+if [ ! -d "/opt/SecureTunnel/" ];then
+    echo -e "${Font_Yellow} ** Creating Program Dictionary...${Font_Suffix}"
+    mkdir /opt/SecureTunnel/ > /dev/null 2>&1
+    mkdir /opt/SecureTunnel/ssl/ > /dev/null 2>&1
+fi
+
+echo -e "${Font_Yellow} ** Configuring system...${Font_Suffix}"
+
+echo -e "${Font_Yellow} ** Showing the node infomation${Font_Suffix}"
+echo -e " Version: " ${version}
+
+echo -e "${Font_Yellow} ** Downloading files and configuring...${Font_Suffix}"
+if [[ -a "/usr/bin/systemctl" ]] || [[ -a "/bin/systemctl" ]];then
+    wget -qO /etc/systemd/system/SecureTunnel.service https://git.zeroteam.top/https://github.com/CoiaPrant/SecureTunnel/blob/master/systemd/SecureTunnel.service
+    ln -sf /etc/systemd/system/SecureTunnel.service /etc/systemd/system/multi-user.target.wants/SecureTunnel.service
+    systemctl daemon-reload > /dev/null 2>&1
+    systemctl enable SecureTunnel > /dev/null 2>&1
+else
+    echo -e "${Font_Yellow}Not Found systemd, skip to configure system service. ${Font_Suffix}"
+fi
+
+wget -qO /tmp/SecureTunnel.tar.gz ${url}
+tar -xvzf /tmp/SecureTunnel.tar.gz -C /tmp/ > /dev/null 2>&1
+rm -rf /opt/SecureTunnel/SecureTunnel > /dev/null 2>&1
+mv /tmp/SecureTunnel /opt/SecureTunnel/SecureTunnel > /dev/null 2>&1
+rm -rf /tmp/* > /dev/null 2>&1
+chmod 777 /opt/SecureTunnel/SecureTunnel
+
+echo -e "${Font_Yellow} ** Starting Program...${Font_Suffix}"
+systemctl start SecureTunnel > /dev/null 2>&1
+
+echo -e "${Font_Green} [Success] Completed update${Font_Suffix}"
