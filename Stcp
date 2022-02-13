@@ -12,7 +12,7 @@ Font_White="\033[37m";
 Font_Suffix="\033[0m";
 version=$(wget -qO- https://api.github.com/repos/CoiaPrant/SecureTunnel/releases | grep "tag_name" | head -n 1| awk -F ":" '{print $2}'| sed 's/\"//g;s/,//g;s/ //g'| awk -F "v" '{print $2}')
 
-echo -e "${Font_SkyBlue}SecureTunnel 一键安装及升级${Font_Suffix}";
+echo -e "${Font_SkyBlue}SecureTunnel 安装/升级${Font_Suffix}";
 echo -e "${Font_Yellow} ** 检查系统信息...${Font_Suffix}";
 
 os=`uname -s | tr [:upper:] [:lower:]`;
@@ -52,9 +52,7 @@ if [ ! -d "/opt/SecureTunnel/" ];then
     mkdir /opt/SecureTunnel/ssl/ > /dev/null 2>&1
 fi
 
-echo -e "${Font_Yellow} ** 配置系统...${Font_Suffix}"
-
-echo -e "${Font_Yellow} ** 显示节点信息${Font_Suffix}"
+echo -e "${Font_Yellow} ** 显示版本信息${Font_Suffix}"
 echo -e " Version: " ${version}
 
 echo -e "${Font_Yellow} ** 下载文件和配置...${Font_Suffix}"
@@ -74,7 +72,7 @@ mv /tmp/SecureTunnel /opt/SecureTunnel/SecureTunnel > /dev/null 2>&1
 rm -rf /tmp/* > /dev/null 2>&1
 chmod +x /opt/SecureTunnel/SecureTunnel
 
-echo -e "${Font_Yellow} ** 启动程序...${Font_Suffix}"
+echo -e "${Font_Yellow} ** 启动进程...${Font_Suffix}"
 systemctl start SecureTunnel > /dev/null 2>&1
 
-echo -e "${Font_Green} 成功完成安装/更新${Font_Suffix}"
+echo -e "${Font_Green} [Success] 完成安装/更新${Font_Suffix}"
