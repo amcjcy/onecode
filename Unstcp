@@ -7,4 +7,4 @@ rm -rf /etc/systemd/system/SecureTunnel.service
 rm -rf /opt/SecureTunnel
 rm -rf /root/Unstcp
 systemctl daemon-reload
-echo -e "\033[1;32m SecureTunnel 卸载完成 \033[32m"
+echo -e "\033[32m SecureTunnel 卸载完成 \033[0m"
