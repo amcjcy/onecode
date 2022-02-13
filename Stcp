@@ -55,7 +55,7 @@ fi
 echo -e "${Font_Yellow} ** 配置系统...${Font_Suffix}"
 
 echo -e "${Font_Yellow} ** 显示节点信息${Font_Suffix}"
-echo -e " Version: " ${version}
+echo -e " 版本号: " ${version}
 
 echo -e "${Font_Yellow} ** 下载文件和配置...${Font_Suffix}"
 if [[ -a "/usr/bin/systemctl" ]] || [[ -a "/bin/systemctl" ]];then
@@ -77,4 +77,4 @@ chmod +x /opt/SecureTunnel/SecureTunnel
 echo -e "${Font_Yellow} ** 启动程序...${Font_Suffix}"
 systemctl start SecureTunnel > /dev/null 2>&1
 
-echo -e "${Font_Green} [Success] 完成更新${Font_Suffix}"
+echo -e "${Font_Green} [Success] 完成安装/更新${Font_Suffix}"
