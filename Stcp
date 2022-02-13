@@ -59,7 +59,8 @@ echo -e " Version: " ${version}
 
 echo -e "${Font_Yellow} ** Downloading files and configuring...${Font_Suffix}"
 if [[ -a "/usr/bin/systemctl" ]] || [[ -a "/bin/systemctl" ]];then
-echo "[Unit]
+cat > /etc/systemd/system/SecureTunnel.service <<EOF
+[Unit]
 Description=SecureTunnel
 After=network-online.target
 Wants=network-online.target systemd-networkd-wait-online.service
@@ -71,7 +72,8 @@ DynamicUser=true
 ExecStart=/opt/SecureTunnel/SecureTunnel -config=/opt/SecureTunnel/config.json
 
 [Install]
-WantedBy=multi-user.target" >> /etc/systemd/system/SecureTunnel.service
+WantedBy=multi-user.target
+EOF
     systemctl daemon-reload > /dev/null 2>&1
     systemctl enable SecureTunnel > /dev/null 2>&1
 else
