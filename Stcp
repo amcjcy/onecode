@@ -72,7 +72,7 @@ tar -xvzf /tmp/SecureTunnel.tar.gz -C /tmp/ > /dev/null 2>&1
 rm -rf /opt/SecureTunnel/SecureTunnel > /dev/null 2>&1
 mv /tmp/SecureTunnel /opt/SecureTunnel/SecureTunnel > /dev/null 2>&1
 rm -rf /tmp/* > /dev/null 2>&1
-chmod 777 /opt/SecureTunnel/SecureTunnel
+chmod +x /opt/SecureTunnel/SecureTunnel
 
 echo -e "${Font_Yellow} ** Starting Program...${Font_Suffix}"
 systemctl start SecureTunnel > /dev/null 2>&1
