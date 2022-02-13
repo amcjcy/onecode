@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+systemctl stop SecureTunnel
+systemctl disable SecureTunnel
+rm -rf /etc/systemd/system/SecureTunnel.service
+rm -rf /opt/SecureTunnel
+rm -rf /root/Unstcp
+systemctl daemon-reload
+echo -e "SecureTunnel \033[1;32m 卸载完成 \033[0m"
