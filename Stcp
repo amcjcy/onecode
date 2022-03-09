@@ -10,7 +10,7 @@ Font_Purple="\033[35m";
 Font_SkyBlue="\033[36m";
 Font_White="\033[37m";
 Font_Suffix="\033[0m";
-version=$(wget -qO- https://git.coiaprant.top/api/v4/projects/5/releases | grep "tag_name" | head -n 1| awk -F ":" '{print $2}'| sed 's/\"//g;s/,//g;s/ //g'| awk -F "v" '{print $2}')
+version=$(wget -qO- https://git.coiaprant.top/api/v4/projects/5/releases | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}'| awk -F "," '{print $1}' | sed 's/\"//g;s/,//g;s/ //g'| awk -F "v" '{print $2}')
 
 echo -e "${Font_SkyBlue}SecureTunnel 安装/升级${Font_Suffix}";
 echo -e "${Font_Yellow} ** 检查系统信息...${Font_Suffix}";
@@ -30,7 +30,7 @@ case ${arch} in
     ;;
 esac
 
-url="https://git.coiaprant.top/CoiaPrant/SecureTunnel/-/releases/v"${version}"/SecureTunnel_"${version}"_"${os}"_"${arch}".tar.gz";
+url="https://git.coiaprant.top/CoiaPrant/SecureTunnel/-/releases/v"${version}"/downloads/SecureTunnel_"${version}"_"${os}"_"${arch}".tar.gz";
 echo -e "${Font_Yellow} ** 检查是否已安装 wget...${Font_Suffix}";
 
 wget -V> /dev/null 2>&1 ;
