@@ -1,0 +1,14 @@
+[Unit]
+Description=sss
+After=rc-local.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/bin/nohup /usr/bin/python /opt/shadowsocks/server.py m>> /opt/shadowsocks/sss.log 2>&1 &
+ExecStop=/usr/bin/bash /opt/shadowsocks/stop.sh
+Restart=always
+LimitNOFILE=512000
+[Install]
+WantedBy=multi-user.target
