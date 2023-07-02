@@ -20,11 +20,11 @@ WEBAPI_TOKEN = "NimaQu"
 MUDB_FILE = "mudb.json"
 
 # Mysql
-MYSQL_HOST = "127.0.0.1"
+MYSQL_HOST = "sqlhost"
 MYSQL_PORT = 3306
 MYSQL_USER = "root"
-MYSQL_PASS = "ss"
-MYSQL_DB = "sspanel"
+MYSQL_PASS = "sqlpassword"
+MYSQL_DB = "sqlname"
 
 MYSQL_SSL_ENABLE = 0
 MYSQL_SSL_CA = ""
