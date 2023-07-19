@@ -7,7 +7,6 @@ Type=simple
 User=root
 Group=root
 ExecStart=/usr/bin/nohup /usr/bin/python /soft/shadowsocks/server.py
-ExecStop=/usr/bin/bash /soft/shadowsocks/stop.sh
 Restart=always
 RestartSec=3s
 LimitNOFILE=32768
