@@ -1,12 +1,12 @@
 [Unit]
 Description=sss
-After=network.target
+After=rc-local.service
 
 [Service]
 Type=simple
 User=root
 Group=root
-ExecStart=/usr/bin/nohup /usr/bin/python /opt/shadowsocks/server.py >> /opt/shadowsocks/sss.log 2>&1
+ExecStart=/usr/bin/nohup /usr/bin/python /opt/shadowsocks/server.py
 ExecStop=/usr/bin/bash /opt/shadowsocks/stop.sh
 Restart=always
 RestartSec=3s
