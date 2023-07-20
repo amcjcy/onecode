@@ -100,7 +100,6 @@ function YouTubeCDNTest() {
 	fi
 
 }
-
 function UnlockTiktokTest() {
 	local result=$(curl --user-agent "${BrowserUA}" -fsSL --max-time 10 "https://www.tiktok.com/" 2>&1);
     if [[ "$result" != "curl"* ]]; then
