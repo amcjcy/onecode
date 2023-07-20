@@ -7,10 +7,6 @@ SKYBLUE='\033[0;36m'
 PLAIN='\033[0m'
 BrowserUA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36"
 
-function Next() {
-    printf "%-50s\n" "-" | sed 's/\s/-/g'
-}
-
 function Install_oth(){
 install_if_not_exists() {
     if ! command -v $1 >/dev/null 2>&1; then
@@ -135,4 +131,3 @@ echo "------------------ Information -------------------"
 }
 
 StreamingMediaUnlockTest
-Next
