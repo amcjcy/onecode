@@ -73,6 +73,33 @@ function UnlockYouTubePremiumTest() {
 		echo -e " YouTube Premium      : ${RED}Failed${PLAIN}" | tee -a $log
     fi
 }
+function YouTubeCDNTest() {
+	local tmpresult=$(curl -sS --max-time 10 https://redirector.googlevideo.com/report_mapping 2>&1)    
+    if [[ "$tmpresult" == "curl"* ]];then
+        echo -e " YouTube Region       : ${RED}Network connection failed${PLAIN}" | tee -a $log
+        return;
+    fi
+	iata=$(echo $tmpresult | grep router | cut -f2 -d'"' | cut -f2 -d"." | sed 's/.\{2\}$//' | tr [:lower:] [:upper:])
+	checkfailed=$(echo $tmpresult | grep "=>")
+	if [ -z "$iata" ] && [ -n "$checkfailed" ];then
+		CDN_ISP=$(echo $checkfailed | awk '{print $3}' | cut -f1 -d"-" | tr [:lower:] [:upper:])
+		echo -e " YouTube CDN          : ${YELLOW}Associated with $CDN_ISP${PLAIN}" | tee -a $log
+		return;
+	elif [ -n "$iata" ];then
+		curl $useNIC -s --max-time 10 "https://www.iata.org/AirportCodesSearch/Search?currentBlock=314384&currentPage=12572&airport.search=${iata}" > ~/iata.txt
+		local line=$(cat ~/iata.txt | grep -n "<td>"$iata | awk '{print $1}' | cut -f1 -d":")
+		local nline=$(expr $line - 2)
+		local location=$(cat ~/iata.txt | awk NR==${nline} | sed 's/.*<td>//' | cut -f1 -d"<")
+		echo -e " YouTube CDN          : ${GREEN}$location${PLAIN}" | tee -a $log
+		rm ~/iata.txt
+		return;
+	else
+		echo -e " YouTube CDN          : ${RED}Undetectable${PLAIN}" | tee -a $log
+		rm ~/iata.txt
+		return;
+	fi
+
+}
 
 function UnlockTiktokTest() {
 	local result=$(curl --user-agent "${BrowserUA}" -fsSL --max-time 10 "https://www.tiktok.com/" 2>&1);
@@ -128,6 +155,7 @@ echo "------------------ Information -------------------"
 	echo ""
 	UnlockNetflixTest
 	UnlockYouTubePremiumTest
+	YouTubeCDNTest
 	UnlockTiktokTest
 	UnlockChatGPTTest
 }
