@@ -1,5 +1,5 @@
 [Unit]
-Description=ssr deamon
+Description=ssr
 After=rc-local.service
 
 [Service]
