@@ -17,7 +17,7 @@ ovz_no(){
 }
 add_swap(){
 echo -e "${Green}请输入需要添加的swap(建议为内存的1.5-2倍)${Font}"
-read -p "请输入swap数值(单位M):" swapsize
+read -e -p "请输入swap数值(单位M):" swapsize
 grep -q "swap" /etc/fstab
 if [ $? -ne 0 ]; then
 	echo -e "${Green}swap未发现，正在为其创建swap${Font}"
