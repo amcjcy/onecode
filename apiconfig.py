@@ -4,7 +4,7 @@ NODE_ID = 0
 # hour,set 0 to disable
 SPEEDTEST = 0
 CLOUDSAFE = 1
-ANTISSATTACK = 1
+ANTISSATTACK = 0
 AUTOEXEC = 0
 
 MU_SUFFIX = "microsoft.com"
