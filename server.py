@@ -30,7 +30,6 @@ if __name__ == "__main__":
 
 import db_transfer
 import web_transfer
-import speedtest_thread
 import auto_thread
 import auto_block
 from shadowsocks import shell
