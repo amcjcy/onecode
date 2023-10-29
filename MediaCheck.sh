@@ -21,7 +21,7 @@ install_if_not_exists unzip
 }
 
 function UnlockNetflixTest() {
-    local result1=$(curl --user-agent "${BrowserUA}" -fsL --write-out %{http_code} --output /dev/null --max-time 10 "https://www.netflix.com/title/81280792" 2>&1)
+    local result1=$(curl --user-agent "${BrowserUA}" -fsL --write-out %{http_code} --output /dev/null --max-time 10 "https://www.netflix.com/title/80018499" 2>&1)
 	
     if [[ "$result1" == "404" ]];then
         echo -e " Netflix              : ${YELLOW}Originals Only${PLAIN}" | tee -a $log
