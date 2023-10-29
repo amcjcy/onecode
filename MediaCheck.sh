@@ -28,7 +28,7 @@ function UnlockNetflixTest() {
 	elif  [[ "$result1" == "403" ]];then
         echo -e " Netflix              : ${RED}No${PLAIN}" | tee -a $log
 	elif [[ "$result1" == "200" ]];then
-		local region=`tr [:lower:] [:upper:] <<< $(curl --user-agent "${BrowserUA}" -fs --max-time 10 --write-out %{redirect_url} --output /dev/null "https://www.netflix.com/title/80018499" | cut -d '/' -f4 | cut -d '-' -f1)` ;
+		local region=`tr [:lower:] [:upper:] <<< $(curl --user-agent "${BrowserUA}" -fs --max-time 10 --write-out %{redirect_url} --output /dev/null "https://www.netflix.com/title/70143836" | cut -d '/' -f4 | cut -d '-' -f1)` ;
 		if [[ ! -n "$region" ]];then
 			region="US";
 		fi
