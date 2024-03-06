@@ -67,17 +67,6 @@ IATACode=$(curl -s --retry 3 --max-time 10 "https://raw.githubusercontent.com/xy
 IATACode2=$(curl -s --retry 3 --max-time 10 "https://raw.githubusercontent.com/xykt/RegionRestrictionCheck/main/reference/IATACode2.txt" 2>&1)
 TVer_Cookie="Accept: application/json;pk=BCpkADawqM0_rzsjsYbC1k1wlJLU4HiAtfzjxdUmfvvLUQB-Ax6VA-p-9wOEZbCEm3u95qq2Y1CQQW1K9tPaMma9iAqUqhpISCmyXrgnlpx9soEmoVNuQpiyGsTpePGumWxSs1YoKziYB6Wz"
 
-countRunTimes() {
-    if [ "$is_busybox" == 1 ]; then
-        count_file=$(mktemp)
-    else
-        count_file=$(mktemp --suffix=RRC)
-    fi
-    RunTimes=$(curl -s --max-time 10 "https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmedia.ispvps.com&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=runs&edge_flat=false" >"${count_file}")
-    TodayRunTimes=$(cat "${count_file}" | tail -3 | head -n 1 | awk '{print $5}')
-    TotalRunTimes=$(cat "${count_file}" | tail -3 | head -n 1 | awk '{print $7}')
-}
-countRunTimes
 
 checkOS() {
     ifTermux=$(echo $PWD | grep termux)
@@ -4199,20 +4188,6 @@ function Goodbye() {
         ADN=US
     else
         ADN=$(echo $(($RANDOM % 2 + 1)))
-    fi
-
-    if [[ "$language" == "e" ]]; then
-        echo -e "${Font_Green}Testing Done! Thanks for Using This Script! ${Font_Suffix}"
-        echo -e "${Font_Yellow}Number of Script Runs for Today: ${TodayRunTimes}; Total Number of Script Runs: ${TotalRunTimes} ${Font_Suffix}"
-        echo -e "========================================================="
-        echo -e "${Font_Red}If you found this script helpful, you can but me a coffee${Font_Suffix}"
-        echo -e ""
-        echo -e "LTC: LQD4S6Y5bu3bHX6hx8ASsGHVfaqFGFNTbx"
-        echo -e "========================================================="
-    else
-        echo -e "${Font_Green}本次测试已结束，感谢使用此脚本 ${Font_Suffix}"
-        echo -e "${Font_Yellow}检测脚本当天运行次数: ${TodayRunTimes}; 共计运行次数: ${TotalRunTimes} ${Font_Suffix}"
-        echo -e ""
     fi
 }
 
