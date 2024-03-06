@@ -4189,6 +4189,7 @@ function Goodbye() {
     else
         ADN=$(echo $(($RANDOM % 2 + 1)))
     fi
+        echo -e "${Font_Green}本次测试已结束，感谢使用此脚本 ${Font_Suffix}"
 }
 
 clear
