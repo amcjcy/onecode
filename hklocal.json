@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+        "tvb.com",
+        "mytvsuper.com",
+        "lih.kg",
+        "lihkg.com",
+        "channelchk.com",
+        "foreignews.com",
+        "hkpeople-local.com",
+        "hk.chinamobile.com"
+      ]
+    }
+  ]
+}
