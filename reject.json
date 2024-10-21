@@ -4,6 +4,9 @@
     {
       "domain_suffix": [
         "update.dbankcdn.com",
+        "ad.doublemax.net",
+        "snapmobile.asia",
+        "qxfly.com",
         "adapi.now.com",
         "admob.com",
         "ads.gmodules.com",
@@ -41,6 +44,39 @@
         "app-measurement.com",
         "firebase-settings.crashlytics.com",
         "dnet.mb.qq.com"
+      ],
+      "domain_keyword": [
+        "admarvel",
+        "admaster",
+        "adsage",
+        "adsensor",
+        "adservice",
+        "adsh",
+        "adsmogo",
+        "adsrvmedia",
+        "adsserving",
+        "adsystem",
+        "adwords",
+        "analysis",
+        "applovin",
+        "appsflyer",
+        "domob",
+        "duomeng",
+        "dwtrack",
+        "guanggao",
+        "lianmeng",
+        "monitor",
+        "omgmta",
+        "omniture",
+        "openx",
+        "partnerad",
+        "pingfore",
+        "socdm",
+        "supersonicads",
+        "tracking",
+        "usage",
+        "wlmonitor",
+        "zjtoolbar"
       ]
     }
   ]
