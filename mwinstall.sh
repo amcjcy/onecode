@@ -88,7 +88,7 @@ if [ $OSNAME != "macos" ];then
 	mkdir -p /www/backup/site
 
 	if [ ! -d /www/server/mdserver-web ]; then
-		curl --insecure -sSLo /tmp/mdserver-web-0.16.5.zip https://github.com/lmc999/midoks/archive/refs/heads/mdserver-web-0.16.5.zip
+		curl --insecure -sSLo /tmp/mdserver-web-0.16.5.zip https://github.com/amcjcy/onecode/raw/refs/heads/main/mdserver-web-0.16.5.zip
 		cd /tmp && unzip /tmp/mdserver-web-0.16.5.zip
 		mv -f /tmp/mdserver-web-0.16.5 /www/server/mdserver-web
 		rm -rf /tmp/mdserver-web-0.16.5.zip
