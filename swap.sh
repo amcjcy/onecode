@@ -91,7 +91,7 @@ main() {
                 ;;
             4)
                 echo -e "${Green}已退出脚本${Font}"
-                exit 0
+                start_menu 0
                 ;;
             *)
                 echo -e "${Red}请输入正确数字 [1-4]${Font}"
